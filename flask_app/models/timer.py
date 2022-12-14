@@ -8,7 +8,7 @@ class Timer:
     def __init__(self, data ):
         self.id=data['id']
         self.name=data['name']
-        self.excercise_time=data['excercise_time']
+        self.exercise_time=data['exercise_time']
         self.rest_time=data['rest_time']
         self.sets=data['sets']
         self.created_at=data['created_at']
@@ -22,8 +22,8 @@ class Timer:
         if len(data['name'])<1:
             flash('name '+ flash_string,'timer')
             valid=False
-        if len(data['excercise_time'])<1:
-            flash('excercise_time '+flash_string,'timer')
+        if len(data['exercise_time'])<1:
+            flash('exercise_time '+flash_string,'timer')
             valid=False
         if len(data['rest_time'])<1:
             flash('rest_time '+flash_string,'timer')
@@ -37,8 +37,8 @@ class Timer:
     def save_timers(cls, data):
         if not Timer.is_valid(data):
             return False
-        query='''INSERT INTO timers(name,excercise_time,rest_time,sets,user_id,updated_at,created_at)
-        VALUES(%(name)s,%(excercise_time)s,%(rest_time)s,%(sets)s,%(user_id)s,NOW(),NOW())'''
+        query='''INSERT INTO timers(name,exercise_time,rest_time,sets,user_id,updated_at,created_at)
+        VALUES(%(name)s,%(exercise_time)s,%(rest_time)s,%(sets)s,%(user_id)s,NOW(),NOW())'''
         return connectToMySQL(DB).query_db(query,data)
     @classmethod
     def update_timer(cls,data):
@@ -47,7 +47,7 @@ class Timer:
             return False
         if not Timer.is_valid(data):
             return False
-        query='''UPDATE timers SET name=%(name)s,excercise_time=%(excercise_time)s,rest_time=%(rest_time)s,sets=%(sets)s
+        query='''UPDATE timers SET name=%(name)s,exercise_time=%(exercise_time)s,rest_time=%(rest_time)s,sets=%(sets)s
         where id=%(id)s'''
         return connectToMySQL(DB).query_db(query,data)
     @classmethod

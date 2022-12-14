@@ -2,7 +2,6 @@
 const countdown = document.getElementById('countdown');
 const playBtn = document.getElementById('play');
 playBtn.addEventListener('click', exerciseControl);
-playBtn.addEventListener('click', init)
 let is_playing = false;
 let activity = 'exercise'
 
@@ -11,13 +10,13 @@ let eTime = Number(document.getElementById('exerciseTime').innerText);
 let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
 
-
-//Making some classes, ksdhfkjhsdfhsdfjhsa
+//Making some classes
 //this will allow us to save some data to pass back to the database we can add as we think of things
 class Countdown {
     constructor(value) {
         this.value = value
         this.setscompleted = 0
+        this.currentTime
     }
 }
 
@@ -25,10 +24,6 @@ let exerciseTime = new Countdown(eTime);
 let restTime = new Countdown(rTime);
 let currentTime = exerciseTime.value;
 
-function init() {
-    sets.innerText--
-    playBtn.removeEventListener('click', init)
-}
 
 function exerciseControl() {
     switch (activity) {
@@ -65,19 +60,29 @@ function exerciseControl() {
 
 function counter() {
     if (countdown.innerText <= 0 && activity === 'exercise') {
+        sets.innerText--;
         currentTime = restTime.value;
         clearInterval(interval)
         is_playing = false;
         activity = 'rest';
         exerciseTime.setsCompleted++;
-        sets.innerText--;
+        sets.innerText--
         return exerciseControl()
-    } else if (countdown.innerText <= 0 && activity === 'rest') { 
+    } else if (countdown.innerText <= 0 && activity === 'rest') {
+        if (sets.innerText <= 0) {
+            return endExercise(exerciseTime.setsCompleted, exerciseTime.value)
+        }
         currentTime = exerciseTime.value;
         clearInterval(interval)
         is_playing = false;
         activity = 'exercise'
         return exerciseControl()
     }
-    countdown.innerText--;
+    countdown.innerText--
+}
+
+function endExercise(a, b) {
+    clearInterval(interval)
+    console.log(a)
+    //display some results about the exercise
 }
