@@ -12,7 +12,7 @@ let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
 
 
-//Making some classes, 
+//Making some classes, ksdhfkjhsdfhsdfjhsa
 //this will allow us to save some data to pass back to the database we can add as we think of things
 class Countdown {
     constructor(value) {
