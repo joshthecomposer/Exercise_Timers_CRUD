@@ -5,3 +5,4 @@ pauseBtn = document.getElementById('pause');
 playBtn.addEventListener('click')
 pauseBtn.addEventListener('click')
 
+function exerciseTimerControl()
