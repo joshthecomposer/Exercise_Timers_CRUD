@@ -2,6 +2,7 @@
 const countdown = document.getElementById('countdown');
 const playBtn = document.getElementById('play');
 playBtn.addEventListener('click', exerciseControl);
+playBtn.addEventListener('click', init)
 let is_playing = false;
 let activity = 'exercise'
 
@@ -11,11 +12,12 @@ let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
 
 
-//Making some classes for counter functionality
+//Making some classes, 
+//this will allow us to save some data to pass back to the database we can add as we think of things
 class Countdown {
     constructor(value) {
-        this.value = value;
-        this.minimum = 0
+        this.value = value
+        this.setscompleted = 0
     }
 }
 
@@ -23,7 +25,10 @@ let exerciseTime = new Countdown(eTime);
 let restTime = new Countdown(rTime);
 let currentTime = exerciseTime.value;
 
-// const exerciseTime = new Countdown(eTime);
+function init() {
+    sets.innerText--
+    playBtn.removeEventListener('click', init)
+}
 
 function exerciseControl() {
     switch (activity) {
@@ -64,6 +69,7 @@ function counter() {
         clearInterval(interval)
         is_playing = false;
         activity = 'rest';
+        exerciseTime.setsCompleted++;
         sets.innerText--;
         return exerciseControl()
     } else if (countdown.innerText <= 0 && activity === 'rest') { 
