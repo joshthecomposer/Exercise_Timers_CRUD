@@ -66,7 +66,6 @@ class Timer:
                 'created_at':timer['users.created_at']
 
         })
-  
         return timer_obj
     @classmethod
     def destroy(cls,id):
@@ -76,3 +75,20 @@ class Timer:
         data={'id':id}
         query='DELETE FROM timers where id=%(id)s'
         return connectToMySQL(DB).query_db(query,data)
+    @classmethod
+    def show_all(cls):
+        query='SELECT * from timers join users on users.id=timers.user_id'
+        all_timers=[]
+        result= connectToMySQL(DB).query_db(query)
+        for i in result:
+            a=cls(i)
+            a.user=user.User({
+                'id':i['user_id'],
+                'username':i['username'],
+                'email':i['email'],
+                'password':i['password'],
+                'created_at':i['users.created_at'],
+                'updated_at':i['users.updated_at']
+            })
+            all_timers.append(a)
+        return all_timers
