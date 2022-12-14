@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='custom/style.css') }}">
-    <script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/script.js') }}" defer></script>
     <title>Timer View</title>
 </head>
 <body>
     <h1 id="countdown">00</h1>
-    <p>Exercise:</p>
-    <p>30</p>
+    <p>Exercise: <span id="exerciseTime">60</span></p>
+    <p>Rest: <span id="restTime">15</span></p>
+    <p>Sets Remaining: <span id="sets">5</span></p>
     <button id="pause">Play</button>
-    <button id="play">Pause</button>
+    <button id="play" style="display:none">Pause</button>
 </body>
 </html>
