@@ -1,0 +1,21 @@
+/* Universal CSS Reset */
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+.timer-ctr {
+    width: 500px;
+}
+.timer-ctr > * {
+    margin: 10px;
+    padding: 10px;
+}
+#countdown {
+    font-size: 6rem;
+}
+.play-btn {
+    background-color: green;
+    width: 200px;
+    border-radius: 20px;
+    border: 0px;
+}
