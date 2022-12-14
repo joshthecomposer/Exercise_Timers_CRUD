@@ -10,6 +10,8 @@
     <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
     <title>{{session['username']}}'s Dashboard</title>
 </head>
-<body>
-</body>
+    <body>
+        <p>{{session['username']}}</p>
+        <a href="/logout">Logout</a>
+    </body>
 </html>

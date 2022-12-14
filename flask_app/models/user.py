@@ -21,12 +21,14 @@ class User:
         return cls(result[0])
     @classmethod
     def user_id(cls, user_id):
-
         data = {"id": user_id}
         query = "SELECT * FROM users WHERE id = %(id)s;"
         result = connectToMySQL(DB).query_db(query,data)
-        
-
+    @classmethod
+    def username_lookup(cls, username):
+        data = {"username": username}
+        query = "SELECT * FROM users WHERE username = %(username)s;"
+        result = connectToMySQL(DB).query_db(query,data)
         if len(result) < 1:
             return False
         return cls(result[0])

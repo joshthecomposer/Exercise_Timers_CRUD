@@ -3,5 +3,11 @@ from flask_app import app
 
 @app.route('/')
 def index():
-    #TODO: Check if user is signed in and redirect to /dashboard if so
+    if 'username' in session:
+        return redirect('/dashboard')
     return render_template('index.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')

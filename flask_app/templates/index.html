@@ -12,11 +12,20 @@
     <title>Document</title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+            <li class="text-danger">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
     <div>
         <h2>Login:</h2>
         <form action="/login" method="POST">
-            <label for=""></label>
-            <input type="text" name="">
+            <label for="username">Username:</label>
+            <input type="text" name="username">
             <label for="password">Password:</label>
             <input type="password" name="password">
             <input type="submit" value="Login">
@@ -26,13 +35,13 @@
         <h2>Sign Up:</h2>
         <form action="/register" method="POST">
             <label for="username">Username:</label>
-            <input type="text" name="">
+            <input type="text" name="username">
             <label for="email">Email:</label>
             <input type="text" name="email">
             <label for="password">Password:</label>
             <input type="password" name="password">
-            <label for="p_confirm">Confirm Password:</label>
-            <input type="password" name="p_confirm">
+            <label for="confirmpassword">Confirm Password:</label>
+            <input type="password" name="confirmpassword">
             <input type="submit" value="Sign Up">
         </form>
     </div>
