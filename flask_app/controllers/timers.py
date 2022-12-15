@@ -19,3 +19,9 @@ def save_timer():
     if not valid:
         return redirect('/dashboard')
     return redirect('/dashboard')
+@app.route('/edit_timer',methods=['POST'])
+def edit_timer():
+    valid=timer.Timer.update_timer(request.form)
+    if not valid:
+        return redirect('/dashboard')
+    return redirect('/dashboard')
