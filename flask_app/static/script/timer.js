@@ -1,4 +1,4 @@
-console.log('timer.js is working')
+exitconsole.log('timer.js is working')
 
 // Getting ahold of some elements and declaring some variables
 const countdown = document.getElementById('countdown');
@@ -68,7 +68,6 @@ function counter() {
         is_playing = false;
         activity = 'rest';
         exerciseTime.setsCompleted++;
-        sets.innerText--
         return exerciseControl()
     } else if (countdown.innerText <= 0 && activity === 'rest') {
         if (sets.innerText <= 0) {
