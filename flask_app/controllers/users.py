@@ -1,6 +1,6 @@
 from flask import render_template, redirect, session, request, flash
 from flask_app import app
-from flask_app.models import user
+from flask_app.models import user, timer
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -35,4 +35,5 @@ def register():
 def dashboard():
     if 'username' not in session:
         return redirect('/')
-    return render_template('dashboard.html')
+    all_timers = timer.Timer.show_all()
+    return render_template('dashboard.html', all_timers=all_timers)

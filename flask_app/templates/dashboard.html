@@ -11,7 +11,31 @@
     <title>{{session['username']}}'s Dashboard</title>
 </head>
     <body>
-        <p>{{session['username']}}</p>
+
+        <h1>{{session['username']}}</h1>
         <a href="/logout">Logout</a>
+        <h1>Create A Timer:</h1>
+        <form action="/create_timer" method='POST'>
+            <label for="name">Timer Name:</label>
+            <input type="text" name="name">
+            <label for="exercise_time">Exercise Time (seconds):</label>
+            <input type="number" name="exercise_time">
+            <label for="name">Rest Time (seconds):</label>
+            <input type="number" name="rest_time">
+            <label for="sets">How many sets?</label>
+            <input type="number" name="sets">
+            <input type="hidden" name="user_id" value="{{session['user_id']}}">
+            <input type="submit" value="Create">
+        </form>
+        <h1>Your Timers</h1>
+        {%for t in all_timers%}
+        <hr>
+        <p>Name: {{t['name']}}</p>
+        <p>Exercise (seconds): {{t['exercise_time']}}</p>
+        <p>Rest (seconds): {{t['rest_time']}}</p>
+        <p>Total Sets: {{t['sets']}}</p>
+        <a href="/view/timer/{{t['id']}}">View</a>
+        {%endfor%}
+        <hr>
     </body>
 </html>

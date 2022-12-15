@@ -15,6 +15,7 @@ class Timer:
         self.updated_at=data['updated_at']
         self.user_id=data['user_id']
         self.user=None
+
     @staticmethod
     def is_valid(data):
         valid=True
@@ -33,13 +34,15 @@ class Timer:
             valid=False
         
         return valid
+
     @classmethod
-    def save_timers(cls, data):
+    def save_timer(cls, data):
         if not Timer.is_valid(data):
             return False
         query='''INSERT INTO timers(name,exercise_time,rest_time,sets,user_id,updated_at,created_at)
         VALUES(%(name)s,%(exercise_time)s,%(rest_time)s,%(sets)s,%(user_id)s,NOW(),NOW())'''
         return connectToMySQL(DB).query_db(query,data)
+
     @classmethod
     def update_timer(cls,data):
         this_timer=cls.by_id(data['id'])
@@ -48,12 +51,13 @@ class Timer:
         if not Timer.is_valid(data):
             return False
         query='''UPDATE timers SET name=%(name)s,exercise_time=%(exercise_time)s,rest_time=%(rest_time)s,sets=%(sets)s
-        where id=%(id)s'''
+        WHERE id=%(id)s'''
         return connectToMySQL(DB).query_db(query,data)
+
     @classmethod
     def by_id(cls, id):
         data={'id':id}
-        query='SELECT * FROM timers JOIN users ON users.id=timers.user_id where timers.id=%(id)s'
+        query='SELECT * FROM timers JOIN users ON users.id=timers.user_id WHERE timers.id=%(id)s'
         result=connectToMySQL(DB).query_db(query,data)
         timer=result[0]
         timer_obj=cls(timer)
@@ -64,22 +68,25 @@ class Timer:
                 'password':timer['password'],
                 'updated_at':timer['users.updated_at'],
                 'created_at':timer['users.created_at']
-
         })
         return timer_obj
+
     @classmethod
-    def destroy(cls,id):
-        this_timer=cls.by_id(id)
-        if this_timer.user.id!=session['user_id']:
+    def destroy(cls, id):
+        this_timer = cls.by_id(id)
+        if this_timer[0]['user_id'] != session['user_id']:
             return False
         data={'id':id}
-        query='DELETE FROM timers where id=%(id)s'
+        query='DELETE FROM timers WHERE id=%(id)s'
         return connectToMySQL(DB).query_db(query,data)
+
     @classmethod
     def show_all(cls):
-        query='SELECT * from timers join users on users.id=timers.user_id'
+        data = {'id': session['user_id']}
+        query='SELECT * FROM timers JOIN users on users.id=timers.user_id WHERE users.id = %(id)s'
         all_timers=[]
-        result= connectToMySQL(DB).query_db(query)
+        result= connectToMySQL(DB).query_db(query, data)
+        print(result)
         for i in result:
             a=cls(i)
             a.user=user.User({

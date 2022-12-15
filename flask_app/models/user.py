@@ -24,6 +24,7 @@ class User:
         data = {"id": user_id}
         query = "SELECT * FROM users WHERE id = %(id)s;"
         result = connectToMySQL(DB).query_db(query,data)
+        return result
     @classmethod
     def username_lookup(cls, username):
         data = {"username": username}
