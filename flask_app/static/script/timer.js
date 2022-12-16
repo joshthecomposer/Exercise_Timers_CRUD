@@ -1,5 +1,3 @@
-exitconsole.log('timer.js is working')
-
 // Getting ahold of some elements and declaring some variables
 const countdown = document.getElementById('countdown');
 const playBtn = document.getElementById('play');
