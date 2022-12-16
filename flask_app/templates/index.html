@@ -21,29 +21,47 @@
         </ul>
         {% endif %}
     {% endwith %}
-    <div>
-        <h2>Login:</h2>
-        <form action="/login" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" name="username">
-            <label for="password">Password:</label>
-            <input type="password" name="password">
-            <input type="submit" value="Login">
-        </form>
-    </div>
-    <div>
-        <h2>Sign Up:</h2>
-        <form action="/register" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" name="username">
-            <label for="email">Email:</label>
-            <input type="text" name="email">
-            <label for="password">Password:</label>
-            <input type="password" name="password">
-            <label for="confirmpassword">Confirm Password:</label>
-            <input type="password" name="confirmpassword">
-            <input type="submit" value="Sign Up">
-        </form>
+    <div class="flex-ctr d-flex">
+        <div class="form-card">
+            <h2 class="form-head">Login</h2>
+            <div class="accent-ln"></div>
+            <form action="/login" method="POST">
+                <div class="form-field">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="form-field">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <input class="submit-btn" type="submit" value="Login">
+            </form>
+        </div>
+        <div class="form-card">
+            <h2 class="form-head">Sign Up</h2>
+            <div class="accent-ln"></div>
+            <div class="d-flex flex-column">
+                <form action="/register" method="POST">
+                <div class="form-field">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username">
+                </div>
+                <div class="form-field">
+                    <label for="email">Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="form-field">
+                    <label for="password">Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <div class="form-field">
+                    <label for="confirmpassword">Confirm Password:</label>
+                    <input type="password" name="confirmpassword">
+                </div>
+                    <input class="submit-btn" type="submit" value="Sign Up">
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 </html>
