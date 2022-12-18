@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head >
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,34 +8,48 @@
     <script src="{{ url_for('static', filename='script/timer.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/style.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>{{session['username']}}'s Dashboard</title>
 </head>
-    <body>
+    <body >
+        <nav class="nav nav-masthead d-flex justify-content-end bg-secondary ">
+            <h2 class="w-25 p-3 text-white">{{session['username']}}</h2>
+            <a href="/logout" class="btn btn-secondary btn-lg  h-25 d-inline-block">Logout</a>
+        </nav> <br> <br>
+        <div class="d-flex justify-content-around">
+            <div class="card text-white bg-secondary mb-3 float-end" style="max-width: 18rem;">
+                <form action="/create_timer" method='POST'>
+                    <h3 class="card-header">Create A Timer:</h3>
+                    <div class="card-body text-white">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name">
+                        <label for="exercise_time">Exercise Time (Seconds):</label>
+                        <input type="number" name="exercise_time">
+                        <label for="name">Rest Time (Seconds):</label>
+                        <input type="number" name="rest_time">
+                        <label for="sets">How many sets?</label>
+                        <input type="number" name="sets">
+                        <input type="hidden" name="user_id" value="{{session['user_id']}}"> <br>
+                        <input type="submit" value="Create"  class="btn btn-secondary btn-lg ">
+                    </div>
+                </form>
+            </div>
+            <div> <br>
+            <div class="card text-white bg-secondary " style="max-width: 18rem;">
+                <h1 class="card-header">Your Timers</h1>
+                    {%for t in all_timers%}
+                <div class="card-body text-white">
+                    <p>Name: {{t['name']}}</p>
+                    <p>Exercise (seconds): {{t['exercise_time']}}</p>
+                    <p>Rest (seconds): {{t['rest_time']}}</p>
+                    <p>Total Sets: {{t['sets']}}</p>
+                    <a class="btn btn-secondary btn-lg " href="/view/timer/{{t['id']}}">View</a>
+                    <a class="btn btn-secondary btn-lg " href="#">Edit</a>
+                    <a class="btn btn-secondary btn-lg " href="#">Delete</a>
+                </div>
 
-        <h1>{{session['username']}}</h1>
-        <a href="/logout">Logout</a>
-        <h1>Create A Timer:</h1>
-        <form action="/create_timer" method='POST'>
-            <label for="name">Timer Name:</label>
-            <input type="text" name="name">
-            <label for="exercise_time">Exercise Time (seconds):</label>
-            <input type="number" name="exercise_time">
-            <label for="name">Rest Time (seconds):</label>
-            <input type="number" name="rest_time">
-            <label for="sets">How many sets?</label>
-            <input type="number" name="sets">
-            <input type="hidden" name="user_id" value="{{session['user_id']}}">
-            <input type="submit" value="Create">
-        </form>
-        <h1>Your Timers</h1>
-        {%for t in all_timers%}
-        <hr>
-        <p>Name: {{t['name']}}</p>
-        <p>Exercise (seconds): {{t['exercise_time']}}</p>
-        <p>Rest (seconds): {{t['rest_time']}}</p>
-        <p>Total Sets: {{t['sets']}}</p>
-        <a href="/view/timer/{{t['id']}}">View</a>
-        {%endfor%}
-        <hr>
+            {%endfor%}
+            </div>
+        </div>
     </body>
 </html>
