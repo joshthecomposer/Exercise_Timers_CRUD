@@ -42,20 +42,24 @@ class User:
     def validate_user(user):
         is_valid=True
         if len(user['username'])<=0:
-            flash('username has to be at least one character','register')
+            flash('username has to be at least one character')
             is_valid=False
         if not EMAIL_REGEX.match(user['email']): 
-            flash("Invalid email address!",'register')
+            flash("Invalid email address!")
             is_valid = False
-        if len(user['password'])<=8:
-            flash('password has to be at least 8 characters','register')
+        if len(user['password']) < 8:
+            flash('password has to be at least 8 characters')
             is_valid=False   
         if user['password']!=user['confirmpassword']:
-            flash("password did not match!,'register'")
+            flash("passwords did not match!")
             is_valid = False
         email_already=User.user_email(user['email'])
         if email_already:
-            flash('account already exists','register')
+            flash('email already exists')
+            is_valid=False
+        user_already = User.username_lookup(user['username'])
+        if user_already:
+            flash('username already registered')
             is_valid=False
         return is_valid
     
