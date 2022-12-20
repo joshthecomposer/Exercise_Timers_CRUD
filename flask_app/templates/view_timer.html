@@ -16,8 +16,11 @@
             <p class="timer-title">{{timer.name}} Timer</p>
             <a class="timer-link text-decoration-none" href="/dashboard">My Dashboard</a>
         </div>
-        <h1 id="countdown">00</h1>
-        <div class="form-card">
+        <div class="timer-main d-flex flex-column align-items-center">
+            <h1 id="countdown">00</h1>
+            <h2 id="timer-status"></h2>
+        </div>
+        <div class="timer-card">
             <p>Exercise: <span id="exerciseTime">{{timer.exercise_time}}</span></p>
             <p>Rest: <span id="restTime">{{timer.rest_time}}</span></p>
             <p>Sets Remaining: <span id="sets">{{timer.sets}}</span></p>
