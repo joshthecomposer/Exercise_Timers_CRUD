@@ -13,14 +13,17 @@
 <body>
     <div class="timer-ctr d-flex flex-column justify-content-center align-items-center">
         <div class="timer-head">
-            <p class="timer-title">{{timer.name}} Timer</p>
+            <p class="timer-title">{{one_timer.name}} Timer</p>
             <a class="timer-link text-decoration-none" href="/dashboard">My Dashboard</a>
         </div>
-        <h1 id="countdown">00</h1>
-        <div class="form-card">
-            <p>Exercise: <span id="exerciseTime">{{timer.exercise_time}}</span></p>
-            <p>Rest: <span id="restTime">{{timer.rest_time}}</span></p>
-            <p>Sets Remaining: <span id="sets">{{timer.sets}}</span></p>
+        <div class="timer-main d-flex flex-column align-items-center">
+            <h1 id="countdown">00</h1>
+            <h2 id="timer-status"></h2>
+        </div>
+        <div class="timer-card">
+            <p>Exercise: <span id="exerciseTime">{{one_timer.exercise_time}}</span></p>
+            <p>Rest: <span id="restTime">{{one_timer.rest_time}}</span></p>
+            <p>Sets Remaining: <span id="sets">{{one_timer.sets}}</span></p>
             <button class="play-btn" id="play">Play</button>
         </div>
     </div>

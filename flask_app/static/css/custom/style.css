@@ -48,7 +48,7 @@
 
 /* Login/Registration Page Stylings */
 .flex-ctr {
-    margin-top: 40px;
+    margin: 20px;
 }
 
 
@@ -56,6 +56,19 @@
     color: white;
     background-color: rgb(95, 163, 205);
     border-radius: 30px;
+    padding:20px;
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer-card {
+    color: white;
+    background-color: rgb(95, 163, 205);
+    border-radius: 30px;
+    padding: 20px;
     margin-top: 20px;
     width: 400px;
     display: flex;
@@ -70,13 +83,13 @@
 .accent-ln {
     width: 80%;
     height: 1px;
-    background-color: black;
+    background-color: white;
 }
 label {
     margin-right: 10px;
 }
 .submit-btn {
-    margin: 0px auto;
+    margin: 10px auto;
     padding: 20px 0px;
     width: 100%;
     border: 0px;

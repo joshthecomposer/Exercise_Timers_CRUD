@@ -1,6 +1,7 @@
 // Getting ahold of some elements and declaring some variables
 const countdown = document.getElementById('countdown');
 const playBtn = document.getElementById('play');
+const timerStatus = document.getElementById('timer-status');
 playBtn.addEventListener('click', exerciseControl);
 let is_playing = false;
 let activity = 'exercise'
@@ -30,12 +31,14 @@ function exerciseControl() {
         case 'exercise':
             if (is_playing) {
                 playBtn.style.backgroundColor = "green"
+                timerStatus.innerText = "Resting"
                 is_playing = false;
                 clearInterval(interval)
                 playBtn.innerText = 'Play'
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
                 playBtn.style.backgroundColor = "gray"
+                timerStatus.innerText = "Running"
                 is_playing = true;
                 countdown.innerText = currentTime
                 playBtn.innerText = 'Pause'
