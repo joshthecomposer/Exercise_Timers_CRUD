@@ -14,7 +14,7 @@
     <body >
         <!-- these are hidden initally, they are what is revealed when you hit edit button -->
         {%for t in all_timers%}
-        <div id="{{t['id']}} {{t['name']}}" class="text-white container col-4" style="position:fixed; z-index: 9999; top:50%; left:50%; margin:auto; transform: translate(-50%, -50%); display:none;">
+        <div id="{{t['id']}} {{t['name']}}" class="text-white container col-lg-4 col-sm-12" style="position:fixed; z-index: 9999; top:50%; left:50%; margin:auto; transform: translate(-50%, -50%); display:none;">
             <div class="container bg-secondary rounded">
                 <h3 class="card-header text-center" style="width: 100%">Edit Timer</h3>
                 <form id="edit-form-{{t['id']}}" method='POST'>
@@ -38,6 +38,31 @@
         </div>
         {%endfor%}
 
+        <div id="create" class="my-4 text-white container col-lg-4 col-sm-12" style="position:fixed; z-index: 9999; top:50%; left:50%; margin:auto; transform: translate(-50%, -50%); display:none;">
+            <div class="container bg-secondary rounded">
+                <h3 class="card-header text-center" style="width: 100%">Create A Timer</h3>
+                <form action="/create_timer" method='POST'>
+                    <div class="text-white form-group">
+                        <label for="name">Name:</label>
+                        <input class="form-control" type="text" name="name">
+                        <label for="exercise_time">Exercise Time (Seconds):</label>
+                        <input class="form-control" type="number" name="exercise_time">
+                        <label for="name">Rest Time (Seconds):</label>
+                        <input class="form-control" type="number" name="rest_time">
+                        <label for="sets">How many sets?</label>
+                        <input class="form-control" type="number" name="sets">
+                        <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                        <div class="d-flex justify-content-center">
+                        <div>
+                            <input type="submit" value="Create"  class="btn btn-dark btn-lg my-3">
+                            <button class="btn btn-danger btn-lg" type="button" onclick="hideCreate()">Back</button>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
 
         <!-- everthing below here is the main body that is blurred -->
@@ -51,29 +76,9 @@
             <div class="container">
                 <div class="row">
 
-                    <div id="create" class="my-4 text-white container col-4">
-                        <div class="container bg-secondary rounded">
-                            <h3 class="card-header text-center" style="width: 100%">Create A Timer</h3>
-                            <form action="/create_timer" method='POST'>
-                                <div class="text-white form-group">
-                                    <label for="name">Name:</label>
-                                    <input class="form-control" type="text" name="name">
-                                    <label for="exercise_time">Exercise Time (Seconds):</label>
-                                    <input class="form-control" type="number" name="exercise_time">
-                                    <label for="name">Rest Time (Seconds):</label>
-                                    <input class="form-control" type="number" name="rest_time">
-                                    <label for="sets">How many sets?</label>
-                                    <input class="form-control" type="number" name="sets">
-                                    <input type="hidden" name="user_id" value="{{session['user_id']}}">
-                                    <div class="d-flex justify-content-center">
-                                    <input type="submit" value="Create"  class="btn btn-dark btn-lg my-3">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-            <div class="my-4 rounded container bg-secondary d-flex flex-column align-items-center col-4">
-                <h3 class="text-white card-header bg-secondary">Your Timers:</h3>
+            <div class="my-4 rounded container bg-secondary d-flex flex-column align-items-center" style="max-width:500px">
+                <h1 class="text-white card-header bg-secondary">Your Exercise Timers</h1>
+                <button class="btn btn-dark btn-lg mt-3" type="button" onclick="revealCreate()">Add A New Timer</button>
                 {%for t in all_timers%}
                 <div id="timer-{{t['id']}}-container" class="container text-dark my-3 bg-light rounded d-flex flex-column align-items-center">
                     <h4>{{t['name']}}</h4>

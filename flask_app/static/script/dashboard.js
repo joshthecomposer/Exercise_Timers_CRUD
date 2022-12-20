@@ -46,6 +46,7 @@ function destroyTimer(id) {
 
 let blurElement = document.getElementById('blur');
 let edit;
+let create = document.querySelector('#create');
 
 
 
@@ -74,6 +75,40 @@ function revealEdit(id, name) {
 function hideEdit() {
     filterVal = "blur(0)"
     $(edit).fadeOut(500)
+    $(blurElement).css({
+        'filter':filterVal,
+        'webkitFilter':filterVal,
+        'mozFilter':filterVal,
+        'oFilter':filterVal,
+        'msFilter':filterVal,
+        'transition':'all 0.5s ease-in',
+        '-webkit-transition':'all 0.5s ease-in',
+        '-moz-transition':'all 0.5s ease-in',
+        '-o-transition':'all 0.5s ease-in'
+    });
+    $(blurElement).removeClass("disabled-btn");
+};
+
+function revealCreate() { 
+    $(blurElement).addClass("disabled-btn");
+    filterVal = "blur(50px)"
+    $(create).fadeIn(500)
+    $(blurElement).css({
+        'filter':filterVal,
+        'webkitFilter':filterVal,
+        'mozFilter':filterVal,
+        'oFilter':filterVal,
+        'msFilter': filterVal,
+        'transition':'all 0.5s ease-in',
+        '-webkit-transition':'all 0.5s ease-in',
+        '-moz-transition':'all 0.5s ease-in',
+        '-o-transition':'all 0.5s ease-in'
+    });
+}
+
+function hideCreate() {
+    filterVal = "blur(0)"
+    $(create).fadeOut(500)
     $(blurElement).css({
         'filter':filterVal,
         'webkitFilter':filterVal,
