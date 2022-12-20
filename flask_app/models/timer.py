@@ -74,7 +74,7 @@ class Timer:
     @classmethod
     def destroy(cls, id):
         this_timer = cls.by_id(id)
-        if this_timer[0]['user_id'] != session['user_id']:
+        if this_timer.user_id != session['user_id']:
             return False
         data={'id':id}
         query='DELETE FROM timers WHERE id=%(id)s'

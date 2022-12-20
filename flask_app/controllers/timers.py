@@ -9,7 +9,7 @@ def view_timer(id):
 @app.route('/delete/<int:id>', methods=['POST'])
 def delete_timer(id):
     timer.Timer.destroy(id)
-    return redirect('/dashboard')
+    return jsonify(id)
 
 @app.route('/create_timer', methods=['POST'])
 def save_timer():

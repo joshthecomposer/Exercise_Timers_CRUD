@@ -21,6 +21,21 @@ $(document).ready(function() {
     });
 });
 
+function destroyTimer(id) {
+    $.ajax({
+        method: 'POST',
+        url: '/delete/' + id,
+        data: {id: id},
+        cache: false,
+        success: function (data) {
+            console.log(data)
+            e = document.getElementById(`timer-${data}-container`)
+            e.remove()
+            return false;
+        }
+    })
+}
+
 
 
 let blurElement = document.getElementById('blur');
