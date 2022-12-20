@@ -22,6 +22,7 @@ $(document).ready(function() {
 });
 
 function destroyTimer(id) {
+    id = id.slice(8)
     $.ajax({
         method: 'POST',
         url: '/delete/' + id,

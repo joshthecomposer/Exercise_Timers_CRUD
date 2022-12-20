@@ -83,7 +83,7 @@
                     <div class="my-2">
                     <a class="btn btn-dark btn-sm" href="/view/timer/{{t['id']}}">View</a>
                     <button id="{{t['id']}}" name="{{t['name']}}" class="btn btn-dark btn-sm" onclick="revealEdit(this.id, this.name)">Edit</button>
-                    <a class="btn btn-dark btn-sm text-white" onclick="destroyTimer({{t['id']}})">Delete</a>
+                    <a id="destroy-{{t['id']}}" class="btn btn-dark btn-sm text-white" onclick="destroyTimer(this.id)">Delete</a>
                     </div>
                 </div>
                 {%endfor%}
