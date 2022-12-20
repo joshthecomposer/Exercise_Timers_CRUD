@@ -41,17 +41,17 @@ class User:
     @staticmethod
     def validate_user(user):
         is_valid=True
-        if len(user['username'])<=0:
-            flash('username has to be at least one character')
+        if len(user['username']) < 1:
+            flash('Username has to be at least one character')
             is_valid=False
         if not EMAIL_REGEX.match(user['email']): 
-            flash("Invalid email address!")
+            flash("Invalid email format")
             is_valid = False
         if len(user['password']) < 8:
-            flash('password has to be at least 8 characters')
+            flash('Password has to be at least 8 characters')
             is_valid=False   
         if user['password']!=user['confirmpassword']:
-            flash("passwords did not match!")
+            flash("Passwords did not match!")
             is_valid = False
         email_already=User.user_email(user['email'])
         if email_already:
