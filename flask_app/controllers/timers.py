@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request
+from flask import render_template, redirect, request, jsonify
 from flask_app import app
 from flask_app.models import timer
 
@@ -21,6 +21,4 @@ def save_timer():
 @app.route('/edit_timer',methods=['POST'])
 def edit_timer():
     valid=timer.Timer.update_timer(request.form)
-    if not valid:
-        return redirect('/dashboard')
-    return redirect('/dashboard')
+    return jsonify(request.form)

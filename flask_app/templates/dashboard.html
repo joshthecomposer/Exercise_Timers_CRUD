@@ -4,52 +4,94 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script src="{{ url_for('static', filename='script/timer.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/style.js') }}" defer></script>
     <script src="{{ url_for('static', filename='script/index.js') }}" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom/style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>{{session['username']}}'s Dashboard</title>
 </head>
     <body >
-        <nav class="nav nav-masthead d-flex justify-content-end bg-secondary ">
-            <h2 class="w-25 p-3 text-white">{{session['username']}}</h2>
-            <a href="/logout" class="btn btn-secondary btn-lg  h-25 d-inline-block">Logout</a>
-        </nav> <br> <br>
-        <div class="d-flex justify-content-around">
-            <div class="card text-white bg-secondary mb-3 float-end" style="max-width: 18rem;">
-                <form action="/create_timer" method='POST'>
-                    <h3 class="card-header">Create A Timer:</h3>
-                    <div class="card-body text-white">
+        <!-- these are hidden initally, they are what is revealed when you hit edit button -->
+        {%for t in all_timers%}
+        <div id="{{t['id']}} {{t['name']}}" class="text-white container col-4" style="position:fixed; z-index: 9999; top:50%; left:50%; margin:auto; transform: translate(-50%, -50%); display:none;">
+            <div class="container bg-secondary rounded">
+                <h3 class="card-header text-center" style="width: 100%">Edit Timer</h3>
+                <form class="edit-form" method='POST'>
+                    <div class="text-white form-group">
+                        <input type="hidden" name="id" value="{{t['id']}}">
                         <label for="name">Name:</label>
-                        <input type="text" name="name">
+                        <input class="form-control" type="text" name="name" value="{{t['name']}}">
                         <label for="exercise_time">Exercise Time (Seconds):</label>
-                        <input type="number" name="exercise_time">
+                        <input class="form-control" type="number" name="exercise_time" value="{{t['exercise_time']}}">
                         <label for="name">Rest Time (Seconds):</label>
-                        <input type="number" name="rest_time">
+                        <input class="form-control" type="number" name="rest_time" value="{{t['rest_time']}}">
                         <label for="sets">How many sets?</label>
-                        <input type="number" name="sets">
-                        <input type="hidden" name="user_id" value="{{session['user_id']}}"> <br>
-                        <input type="submit" value="Create"  class="btn btn-secondary btn-lg ">
-                    </div>
-                </form>
+                        <input class="form-control" type="number" name="sets" value="{{t['sets']}}">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <input type="submit" value="Submit"  class="btn btn-dark btn-lg my-3">                
+                            <button type="button" class="btn btn-danger btn-lg" onclick="hideEdit(this)">Back</button>
+                        </div>
+                </div>
+            </form>
             </div>
-            <div> <br>
-            <div class="card text-white bg-secondary " style="max-width: 18rem;">
-                <h1 class="card-header">Your Timers</h1>
-                    {%for t in all_timers%}
-                <div class="card-body text-white">
+        </div>
+        {%endfor%}
+
+
+
+        <!-- everthing below here is the main body that is blurred -->
+        <div id="blur">
+        <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
+                <h2 class="p-3 text-white">{{session['username']}}</h2>
+            <div>
+                <a href="/logout" class="btn btn-secondary btn-lg d-inline-block mr-3">Logout</a>
+            </div>
+        </nav>
+            <div class="container">
+                <div class="row">
+
+                    <div id="create" class="my-4 text-white container col-4">
+                        <div class="container bg-secondary rounded">
+                            <h3 class="card-header text-center" style="width: 100%">Create A Timer</h3>
+                            <form action="/create_timer" method='POST'>
+                                <div class="text-white form-group">
+                                    <label for="name">Name:</label>
+                                    <input class="form-control" type="text" name="name">
+                                    <label for="exercise_time">Exercise Time (Seconds):</label>
+                                    <input class="form-control" type="number" name="exercise_time">
+                                    <label for="name">Rest Time (Seconds):</label>
+                                    <input class="form-control" type="number" name="rest_time">
+                                    <label for="sets">How many sets?</label>
+                                    <input class="form-control" type="number" name="sets">
+                                    <input type="hidden" name="user_id" value="{{session['user_id']}}">
+                                    <div class="d-flex justify-content-center">
+                                    <input type="submit" value="Create"  class="btn btn-dark btn-lg my-3">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+            <div class="my-4 rounded container bg-secondary d-flex flex-column align-items-center col-4">
+                <h3 class="text-white card-header bg-secondary">Your Timers:</h3>
+                {%for t in all_timers%}
+                <div id="timer-{{t['id']}}-container" class="container text-dark my-3 bg-light rounded d-flex flex-column align-items-center">
                     <p>Name: {{t['name']}}</p>
                     <p>Exercise (seconds): {{t['exercise_time']}}</p>
                     <p>Rest (seconds): {{t['rest_time']}}</p>
                     <p>Total Sets: {{t['sets']}}</p>
-                    <a class="btn btn-secondary btn-lg " href="/view/timer/{{t['id']}}">View</a>
-                    <a class="btn btn-secondary btn-lg " href="#">Edit</a>
-                    <a class="btn btn-secondary btn-lg " href="#">Delete</a>
+                    <div class="my-2">
+                    <a class="btn btn-dark btn-sm" href="/view/timer/{{t['id']}}">View</a>
+                    <button id="{{t['id']}}" name="{{t['name']}}" class="btn btn-dark btn-sm" onclick="revealEdit(this.id, this.name)">Edit</button>
+                    <a class="btn btn-dark btn-sm" href="#">Delete</a>
+                    </div>
                 </div>
-
-            {%endfor%}
+                {%endfor%}
             </div>
         </div>
+    </div>
+    </div>
     </body>
 </html>

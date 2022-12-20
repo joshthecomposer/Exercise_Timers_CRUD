@@ -83,7 +83,7 @@ class Timer:
     @classmethod
     def show_all(cls):
         data = {'id': session['user_id']}
-        query='SELECT * FROM timers JOIN users on users.id=timers.user_id WHERE users.id = %(id)s'
+        query='SELECT * FROM timers JOIN users on users.id=timers.user_id WHERE users.id = %(id)s ORDER BY timers.created_at DESC'
         all_timers=[]
         result= connectToMySQL(DB).query_db(query, data)
         print(result)
