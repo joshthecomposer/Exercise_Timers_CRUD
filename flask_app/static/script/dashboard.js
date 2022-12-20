@@ -20,7 +20,7 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['exercise_time'].length > 0) {
-                if (Number(verify['exercise_time']) <= 0 || Number(verify['exercise_time']) > 299) {
+                if (Number(verify['exercise_time']) <= 0 || Number(verify['exercise_time']) > 300) {
                     alert("Please enter a number greater than zero and less than 301")
                     return
                 }
@@ -30,7 +30,7 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['rest_time'].length > 0) {
-                if (Number(verify['rest_time']) <= 0 || Number(verify['rest_time']) > 299) {
+                if (Number(verify['rest_time']) <= 0 || Number(verify['rest_time']) > 300) {
                     alert("Please enter a number greater than zero and less than 301")
                     return
                 }
@@ -40,7 +40,7 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['sets'].length > 0) {
-                if (Number(verify['sets']) <= 0 || Number(verify['sets']) > 299) {
+                if (Number(verify['sets']) <= 0 || Number(verify['sets']) > 300) {
                     alert("Please enter a number greater than zero and less than 301")
                     return
                 }

@@ -33,16 +33,16 @@ class Timer:
             flash('Amount of sets '+flash_string,'timer')
             valid=False
         if len(data['exercise_time']) >= 1:
-            if int(data['exercise_time']) < 1 or int(data['exercise_time']) > 299:
-                flash('Please enter a number between 1 and 299')
+            if int(data['exercise_time']) < 1 or int(data['exercise_time']) > 300:
+                flash('Please enter a number between 1 and 301')
                 valid=False
         if len(data['rest_time']) >= 1:
-            if int(data['rest_time']) < 1 or int(data['rest_time']) > 299:
-                flash('Please enter a number between 1 and 299')
+            if int(data['rest_time']) < 1 or int(data['rest_time']) > 300:
+                flash('Please enter a number between 1 and 301')
                 valid=False
         if len(data['sets']) >= 1:
-            if int(data['sets']) < 1 or int(data['sets']) > 299:
-                flash('Please enter a number between 1 and 299')
+            if int(data['sets']) < 1 or int(data['sets']) > 300:
+                flash('Please enter a number between 1 and 301')
                 valid=False
         return valid
 
