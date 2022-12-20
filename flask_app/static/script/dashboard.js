@@ -1,10 +1,52 @@
 $(document).ready(function () {
 forms = document.querySelectorAll("[id^='edit-form-']")
-    console.log(forms)
     for (let i = 0; i < forms.length; i++) {
         $(forms[i]).on('submit', function (e) {
             e.preventDefault();
-            data = $(forms[i]).serialize()
+            let verify = $(forms[i])
+                .serializeArray()
+                .reduce(function (json, { name, value }) {
+                    json[name] = value;
+                    return json;
+                }, {});
+
+            //validation for AJAX
+            if (verify['name'].length < 1) {
+                alert("Please enter a name")
+                return
+            }
+            if (verify['exercise_time'].length < 1) {
+                alert("Please enter an exercise time")
+                return
+            }
+            if (verify['exercise_time'].length > 0) {
+                if (Number(verify['exercise_time']) <= 0) {
+                    alert("Please enter a number greater than zero")
+                    return
+                }
+            }
+            if (verify['rest_time'].length < 1) {
+                alert("Please enter an exercise time")
+                return
+            }
+            if (verify['rest_time'].length > 0) {
+                if (Number(verify['rest_time']) <= 0) {
+                    alert("Please enter a number greater than zero")
+                    return
+                }
+            }
+            if (verify['sets'].length < 1) {
+                alert("Please enter an exercise time")
+                return
+            }
+            if (verify['sets'].length > 0) {
+                if (Number(verify['sets']) <= 0) {
+                    alert("Please enter a number greater than zero")
+                    return
+                }
+            }
+
+            let data = $(forms[i]).serialize()
             $.ajax({
                 method: 'POST',
                 url: "/edit_timer",
