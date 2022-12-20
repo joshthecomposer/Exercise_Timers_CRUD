@@ -20,8 +20,8 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['exercise_time'].length > 0) {
-                if (Number(verify['exercise_time']) <= 0) {
-                    alert("Please enter a number greater than zero")
+                if (Number(verify['exercise_time']) <= 0 || Number(verify['exercise_time']) > 299) {
+                    alert("Please enter a number greater than zero and less than 301")
                     return
                 }
             }
@@ -30,8 +30,8 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['rest_time'].length > 0) {
-                if (Number(verify['rest_time']) <= 0) {
-                    alert("Please enter a number greater than zero")
+                if (Number(verify['rest_time']) <= 0 || Number(verify['rest_time']) > 299) {
+                    alert("Please enter a number greater than zero and less than 301")
                     return
                 }
             }
@@ -40,8 +40,8 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                 return
             }
             if (verify['sets'].length > 0) {
-                if (Number(verify['sets']) <= 0) {
-                    alert("Please enter a number greater than zero")
+                if (Number(verify['sets']) <= 0 || Number(verify['sets']) > 299) {
+                    alert("Please enter a number greater than zero and less than 301")
                     return
                 }
             }
@@ -131,7 +131,7 @@ function hideEdit() {
     $(blurElement).removeClass("disabled-btn");
 };
 
-function revealCreate() { 
+function revealCreate() {
     $(blurElement).addClass("disabled-btn");
     filterVal = "blur(50px)"
     $(create).fadeIn(500)
@@ -164,3 +164,8 @@ function hideCreate() {
     });
     $(blurElement).removeClass("disabled-btn");
 };
+
+setTimeout(function () {
+    let e = document.querySelector(".message")
+    $(e).fadeOut(500)
+}, 2000)

@@ -21,25 +21,28 @@ class Timer:
         valid=True
         flash_string='is required'
         if len(data['name'])<1:
-            flash('name '+ flash_string,'timer')
+            flash('Name '+ flash_string,'timer')
             valid=False
         if len(data['exercise_time'])<1:
-            flash('exercise_time '+flash_string,'timer')
+            flash('Exercise time '+flash_string,'timer')
             valid=False
         if len(data['rest_time'])<1:
-            flash('rest_time '+flash_string,'timer')
+            flash('Rest time '+flash_string,'timer')
             valid=False
         if len(data['sets'])<1:
-            flash('sets '+flash_string,'timer')
+            flash('Amount of sets '+flash_string,'timer')
             valid=False
         if len(data['exercise_time']) >= 1:
-            if int(data['exercise_time']) < 1:
+            if int(data['exercise_time']) < 1 or int(data['exercise_time']) > 299:
+                flash('Please enter a number between 1 and 299')
                 valid=False
         if len(data['rest_time']) >= 1:
-            if int(data['rest_time']) < 1:
+            if int(data['rest_time']) < 1 or int(data['rest_time']) > 299:
+                flash('Please enter a number between 1 and 299')
                 valid=False
         if len(data['sets']) >= 1:
-            if int(data['sets']) < 1:
+            if int(data['sets']) < 1 or int(data['sets']) > 299:
+                flash('Please enter a number between 1 and 299')
                 valid=False
         return valid
 

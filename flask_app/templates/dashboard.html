@@ -73,11 +73,19 @@
                 <a href="/logout" class="btn btn-secondary btn-lg d-inline-block mr-3">Logout</a>
             </div>
         </nav>
-            <div class="container">
-                <div class="row">
-
-            <div class="my-4 rounded container bg-secondary d-flex flex-column align-items-center col-lg-5 col-md-8 col-sm-11" style="min-height:200px">
+        <div class="container">
+            <div class="row">
+            <div class="my-4 pb-3 rounded container bg-secondary d-flex flex-column align-items-center col-lg-5 col-md-8 col-sm-11" style="min-height:200px">
                 <h1 class="text-white card-header bg-secondary">Your Exercise Timers</h1>
+                {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <div class="container message">
+                    {% for message in messages %}
+                        <p class="text-danger text-center">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                {% endwith %}
                 <button class="btn btn-dark btn-lg mt-3" type="button" onclick="revealCreate()">Add A New Timer</button>
                 {%for t in all_timers%}
                 <div id="timer-{{t['id']}}-container" class="container text-dark my-3 bg-light rounded d-flex flex-column align-items-center">
