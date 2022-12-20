@@ -17,7 +17,7 @@
         <div id="{{t['id']}} {{t['name']}}" class="text-white container col-4" style="position:fixed; z-index: 9999; top:50%; left:50%; margin:auto; transform: translate(-50%, -50%); display:none;">
             <div class="container bg-secondary rounded">
                 <h3 class="card-header text-center" style="width: 100%">Edit Timer</h3>
-                <form class="edit-form" method='POST'>
+                <form id="edit-form-{{t['id']}}" method='POST'>
                     <div class="text-white form-group">
                         <input type="hidden" name="id" value="{{t['id']}}">
                         <label for="name">Name:</label>

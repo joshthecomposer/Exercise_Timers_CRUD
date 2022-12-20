@@ -1,24 +1,27 @@
-$(document).ready(function() {
-    $('.edit-form').on('submit', function (e) {
-        e.preventDefault();
-        data = $('.edit-form').serialize()
-        console.log()
-        $.ajax({
-            method: 'POST',
-            url: "/edit_timer",
-            data: data,
-            cache: false,
-            success: function (data) {
-                e = document.getElementById(`timer-${data.id}-container`)
-                e.children[0].innerText = data.name
-                e.children[1].innerText = "Exercise (seconds): "+data.exercise_time
-                e.children[2].innerText = "Rest (seconds): "+data.rest_time
-                e.children[3].innerText = "Total Sets: " + data.sets
-                hideEdit()
-                return false;
-            }
-        })
-    });
+$(document).ready(function () {
+forms = document.querySelectorAll("[id^='edit-form-']")
+    console.log(forms)
+    for (let i = 0; i < forms.length; i++) {
+        $(forms[i]).on('submit', function (e) {
+            e.preventDefault();
+            data = $(forms[i]).serialize()
+            $.ajax({
+                method: 'POST',
+                url: "/edit_timer",
+                data: data,
+                cache: false,
+                success: function (data) {
+                    e = document.getElementById(`timer-${data.id}-container`)
+                    e.children[0].innerText = data.name
+                    e.children[1].innerText = "Exercise (seconds): "+data.exercise_time
+                    e.children[2].innerText = "Rest (seconds): "+data.rest_time
+                    e.children[3].innerText = "Total Sets: " + data.sets
+                    hideEdit()
+                    return false;
+                }
+            })
+        });
+    }
 });
 
 function destroyTimer(id) {
