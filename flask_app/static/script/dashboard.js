@@ -10,7 +10,7 @@ $(document).ready(function() {
             cache: false,
             success: function (data) {
                 e = document.getElementById(`timer-${data.id}-container`)
-                e.children[0].innerText = "Name: "+data.name
+                e.children[0].innerText = data.name
                 e.children[1].innerText = "Exercise (seconds): "+data.exercise_time
                 e.children[2].innerText = "Rest (seconds): "+data.rest_time
                 e.children[3].innerText = "Total Sets: " + data.sets
