@@ -76,7 +76,7 @@
                 <h3 class="text-white card-header bg-secondary">Your Timers:</h3>
                 {%for t in all_timers%}
                 <div id="timer-{{t['id']}}-container" class="container text-dark my-3 bg-light rounded d-flex flex-column align-items-center">
-                    <p>Name: {{t['name']}}</p>
+                    <h4>{{t['name']}}</h4>
                     <p>Exercise (seconds): {{t['exercise_time']}}</p>
                     <p>Rest (seconds): {{t['rest_time']}}</p>
                     <p>Total Sets: {{t['sets']}}</p>
