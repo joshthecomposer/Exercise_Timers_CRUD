@@ -32,7 +32,15 @@ class Timer:
         if len(data['sets'])<1:
             flash('sets '+flash_string,'timer')
             valid=False
-        
+        if len(data['exercise_time']) >= 1:
+            if int(data['exercise_time']) < 1:
+                valid=False
+        if len(data['rest_time']) >= 1:
+            if int(data['rest_time']) < 1:
+                valid=False
+        if len(data['sets']) >= 1:
+            if int(data['sets']) < 1:
+                valid=False
         return valid
 
     @classmethod
