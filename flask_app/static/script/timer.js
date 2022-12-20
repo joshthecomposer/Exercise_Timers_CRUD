@@ -29,11 +29,13 @@ function exerciseControl() {
     switch (activity) {
         case 'exercise':
             if (is_playing) {
+                playBtn.style.backgroundColor = "green"
                 is_playing = false;
                 clearInterval(interval)
                 playBtn.innerText = 'Play'
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
+                playBtn.style.backgroundColor = "gray"
                 is_playing = true;
                 countdown.innerText = currentTime
                 playBtn.innerText = 'Pause'
