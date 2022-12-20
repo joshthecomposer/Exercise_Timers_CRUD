@@ -31,7 +31,9 @@ function destroyTimer(id) {
         success: function (data) {
             console.log(data)
             e = document.getElementById(`timer-${data}-container`)
-            e.remove()
+            $(e).fadeOut(400, function () {
+                $(e).remove();
+            })
             return false;
         }
     })
