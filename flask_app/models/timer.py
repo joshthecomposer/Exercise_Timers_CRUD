@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash,session
 from flask_app.models import user
 
-DB='railway'
+DB='et'
 
 class Timer:
     def __init__(self, data ):
