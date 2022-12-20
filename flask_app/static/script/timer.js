@@ -31,14 +31,13 @@ function exerciseControl() {
         case 'exercise':
             if (is_playing) {
                 playBtn.style.backgroundColor = "green"
-                timerStatus.innerText = "Resting"
                 is_playing = false;
                 clearInterval(interval)
                 playBtn.innerText = 'Play'
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
                 playBtn.style.backgroundColor = "gray"
-                timerStatus.innerText = "Running"
+                timerStatus.innerText = "Exercising"
                 is_playing = true;
                 countdown.innerText = currentTime
                 playBtn.innerText = 'Pause'
@@ -53,6 +52,7 @@ function exerciseControl() {
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
                 is_playing = true;
+                timerStatus.innerText = "Resting"
                 countdown.innerText = currentTime
                 playBtn.innerText = 'Pause'
                 interval = setInterval(counter, 1000)
@@ -87,6 +87,8 @@ function counter() {
 
 function endExercise(a, b) {
     clearInterval(interval)
+    timerStatus.innerText = "COMPLETE"
+    document.getElementById('victory').style.display = "block";
     console.log(a)
     //display some results about the exercise
 }

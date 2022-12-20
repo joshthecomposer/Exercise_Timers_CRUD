@@ -19,6 +19,7 @@
         <div class="timer-main d-flex flex-column align-items-center">
             <h1 id="countdown">00</h1>
             <h2 id="timer-status"></h2>
+            <img id="victory" src="{{ url_for('static', filename='img/woo.gif') }}" alt="none" style="display:none;">
         </div>
         <div class="timer-card">
             <p>Exercise: <span id="exerciseTime">{{one_timer.exercise_time}}</span></p>
