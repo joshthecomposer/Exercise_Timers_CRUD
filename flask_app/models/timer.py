@@ -19,6 +19,7 @@ class Timer:
     @staticmethod
     def is_valid(data):
         valid=True
+        big_int = False
         flash_string='is required'
         if len(data['name'])<1:
             flash('Name '+ flash_string,'timer')
@@ -34,16 +35,18 @@ class Timer:
             valid=False
         if len(data['exercise_time']) >= 1:
             if int(data['exercise_time']) < 1 or int(data['exercise_time']) > 300:
-                flash('Please enter a number between 1 and 301')
+                big_int = True
                 valid=False
         if len(data['rest_time']) >= 1:
             if int(data['rest_time']) < 1 or int(data['rest_time']) > 300:
-                flash('Please enter a number between 1 and 301')
+                big_int = True
                 valid=False
         if len(data['sets']) >= 1:
             if int(data['sets']) < 1 or int(data['sets']) > 300:
-                flash('Please enter a number between 1 and 301')
+                big_int = True
                 valid=False
+        if big_int == True:
+            flash('Please enter a number between 1 and 301')
         return valid
 
     @classmethod
