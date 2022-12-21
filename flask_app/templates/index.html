@@ -12,18 +12,8 @@
     <title>Document</title>
 </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul class=flashes>
-        {% for message in messages %}
-            <li class="text-danger">{{ message }}</li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-    {% endwith %}
-
     <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
-        <h1 class="p-3 text-white">timer.io</h2>
+        <h1 class="p-3 text-white">timer.io</h1>
     </nav>
     <div class="flex-ctr d-flex">
         <div id="login" class="form-card" style="display:none;">
@@ -45,6 +35,15 @@
         <div id="sign-up" class="form-card">
             <h2 class="form-head">Sign Up</h2>
             <div class="accent-ln"></div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                <ul class='flashes'>
+                {% for message in messages %}
+                    <li class="text-danger">{{ message }}</li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+            {% endwith %}
             <div class="d-flex flex-column">
                 <form action="/register" method="POST">
                 <div class="form-field">
