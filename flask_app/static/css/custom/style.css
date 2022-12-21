@@ -117,3 +117,7 @@ label {
 li {
     font-weight: bold;
 }
+
+.hidden {
+    display: none;
+}

@@ -1,32 +1,64 @@
+
+let id = document.querySelector('.hidden')
+id = Number(id.innerText)
+let activity
+let sets_completed = 0;
+
+$.ajax({
+    method: 'POST',
+    url: "/get_activity",
+    data: {'id':id},
+    cache: false,
+    success: function (data) {
+        activity = data.activity
+        sets_completed = data.sets_completed
+        console.log(sets_completed)
+        return false
+    }
+}).done(function () {
+    let timer_card = document.querySelector('.timer-card')
+    timer_card.style.display = 'block'
+
 // Getting ahold of some elements and declaring some variables
 const countdown = document.getElementById('countdown');
 const playBtn = document.getElementById('play');
 const timerStatus = document.getElementById('timer-status');
 playBtn.addEventListener('click', exerciseControl);
 let is_playing = false;
-let activity = 'exercise'
 
 // Grabbing the countdown values
 let eTime = Number(document.getElementById('exerciseTime').innerText);
 let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
-countdown.innerText = eTime
+sets.innerText -= sets_completed
+let currentTime
+    
+    
+
 
 //Making some classes
 //this will allow us to save some data to pass back to the database we can add as we think of things
 class Countdown {
     constructor(value) {
         this.value = value
-        this.setscompleted = 0
-        this.currentTime
-        this.activity
     }
 }
 
 let exerciseTime = new Countdown(eTime);
 let restTime = new Countdown(rTime);
-let currentTime = exerciseTime.value;
 
+switch (activity) {
+    case 'exercise':
+        currentTime = exerciseTime.value;
+        countdown.innerText = eTime
+        break;
+    case 'rest':
+        currentTime = restTime.value;
+        countdown.innerText = rTime
+        break;
+    default:
+        break;
+    }
 
 function exerciseControl() {
     switch (activity) {
@@ -38,7 +70,22 @@ function exerciseControl() {
                 timerStatus.innerText = "Paused"
                 playBtn.innerText = 'Play'
                 currentTime = countdown.innerText
-            } else if (!is_playing) { 
+            } else if (!is_playing) {
+
+                $.ajax({
+                    method: 'POST',
+                    url: "/set_activity",
+                    data: {
+                        'activity': 'exercise',
+                        'timer_id': id,
+                        'in_progress': 1
+                    },
+                    cache: false,
+                    success: function (data) {
+                        return false
+                    }
+                })
+
                 playBtn.style.backgroundColor = "gray"
                 timerStatus.innerText = "Exercising"
                 is_playing = true;
@@ -55,7 +102,21 @@ function exerciseControl() {
                 playBtn.innerText = 'Play'
                 timerStatus.innerText = "Paused"
                 currentTime = countdown.innerText
-            } else if (!is_playing) { 
+            } else if (!is_playing) {
+                $.ajax({
+                    method: 'POST',
+                    url: "/set_activity",
+                    data: {
+                        'activity': 'rest',
+                        'timer_id': id,
+                        'in_progress': 1,
+                    },
+                    cache: false,
+                    success: function (data) {
+                        return false
+                    }
+                })
+
                 is_playing = true;
                 playBtn.style.backgroundColor = "gray"
                 timerStatus.innerText = "Resting"
@@ -71,16 +132,30 @@ function exerciseControl() {
 
 function counter() {
     if (countdown.innerText <= 0 && activity === 'exercise') {
-        sets.innerText--;
+        sets_completed++;
+        console.log(sets_completed)
         currentTime = restTime.value;
+        $.ajax({
+            method: 'POST',
+            url: "/set_sets_completed",
+            data: {
+                'timer_id': id,
+                'sets_completed' : sets_completed
+            },
+            cache: false,
+            success: function (data) {
+                return false
+            }
+        })
+
+        sets.innerText--
         clearInterval(interval)
         is_playing = false;
         activity = 'rest';
-        exerciseTime.setsCompleted++;
         return exerciseControl()
     } else if (countdown.innerText <= 0 && activity === 'rest') {
         if (sets.innerText <= 0) {
-            return endExercise(exerciseTime.setsCompleted, exerciseTime.value)
+            return endExercise()
         }
         currentTime = exerciseTime.value;
         clearInterval(interval)
@@ -95,10 +170,23 @@ function endExercise(a, b) {
     clearInterval(interval)
     timerStatus.innerText = "COMPLETE"
     document.getElementById('victory').style.display = "block";
-    console.log(a)
-    //display some results about the exercise
+    $.ajax({
+        method: 'POST',
+        url: "/reset_timer",
+        data: {'timer_id': id},
+        cache: false,
+        success: function (data) {
+            return false
+        }
+    })
 }
 
 function reset() {
     window.location.reload();
 }
+
+
+
+
+})
+

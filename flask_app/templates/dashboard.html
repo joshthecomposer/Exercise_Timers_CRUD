@@ -92,7 +92,11 @@
                     <h4>{{t['name']}}</h4>
                     <p>Exercise (seconds): {{t['exercise_time']}}</p>
                     <p>Rest (seconds): {{t['rest_time']}}</p>
+                    {%if t.state.in_progress%}
+                    <p>Sets Remaining: {{t['sets'] - t.state.sets_completed}}</p>
+                    {%elif not t.state.in_progress%}
                     <p>Total Sets: {{t['sets']}}</p>
+                    {%endif%}
                     <div class="my-2">
                     <a class="btn btn-dark btn-sm" href="/view/timer/{{t['id']}}">View</a>
                     <button id="{{t['id']}}" name="{{t['name']}}" class="btn btn-dark btn-sm" onclick="revealEdit(this.id, this.name)">Edit</button>
