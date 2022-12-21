@@ -10,6 +10,7 @@ let activity = 'exercise'
 let eTime = Number(document.getElementById('exerciseTime').innerText);
 let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
+countdown.innerText = eTime
 
 //Making some classes
 //this will allow us to save some data to pass back to the database we can add as we think of things
@@ -18,6 +19,7 @@ class Countdown {
         this.value = value
         this.setscompleted = 0
         this.currentTime
+        this.activity
     }
 }
 
@@ -95,4 +97,8 @@ function endExercise(a, b) {
     document.getElementById('victory').style.display = "block";
     console.log(a)
     //display some results about the exercise
+}
+
+function reset() {
+    window.location.reload();
 }
