@@ -21,6 +21,10 @@
         </ul>
         {% endif %}
     {% endwith %}
+
+    <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
+        <h1 class="p-3 text-white">timer.io</h2>
+    </nav>
     <div class="flex-ctr d-flex">
         <div id="login" class="form-card" style="display:none;">
             <h2 class="form-head">Login</h2>
@@ -34,7 +38,7 @@
                     <label for="password">Password:</label>
                     <input class="form-control" type="password" name="password">
                 </div>
-                <input class="submit-btn" type="submit" value="Login">
+                <input class="submit-btn btn btn-secondary btn-lg d-inline-block mr-3" type="submit" value="Login">
             </form>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Sign Up</button> instead?</p>
         </div>
@@ -59,7 +63,7 @@
                     <label for="confirmpassword">Confirm Password:</label>
                     <input class="form-control" type="password" name="confirmpassword">
                 </div>
-                    <input class="submit-btn" type="submit" value="Sign Up">
+                    <input class="submit-btn btn btn-secondary btn-lg d-inline-block mr-3" type="submit" value="Sign Up">
                 </form>
             </div>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Login</button> instead?</p>

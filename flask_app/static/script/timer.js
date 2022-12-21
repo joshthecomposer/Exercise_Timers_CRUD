@@ -33,6 +33,7 @@ function exerciseControl() {
                 playBtn.style.backgroundColor = "green"
                 is_playing = false;
                 clearInterval(interval)
+                timerStatus.innerText = "Paused"
                 playBtn.innerText = 'Play'
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
@@ -48,10 +49,13 @@ function exerciseControl() {
             if (is_playing) {
                 is_playing = false;
                 clearInterval(interval)
+                playBtn.style.backgroundColor = "green"
                 playBtn.innerText = 'Play'
+                timerStatus.innerText = "Paused"
                 currentTime = countdown.innerText
             } else if (!is_playing) { 
                 is_playing = true;
+                playBtn.style.backgroundColor = "gray"
                 timerStatus.innerText = "Resting"
                 countdown.innerText = currentTime
                 playBtn.innerText = 'Pause'
