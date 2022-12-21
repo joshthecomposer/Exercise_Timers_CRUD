@@ -12,15 +12,15 @@
 </head>
 <body>
 
-    <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
-        <h2 class="p-3 text-white">{{one_timer.name}} Timer</h2>
-    <div>
+    <nav class="p-2 mb-2 nav d-flex justify-content-end align-items-center" style="background-color:#333;">
+        <h2 class=" text-white">{{one_timer.name}} Timer</h2>
+    <div class="mb-2">
         <a class="btn btn-secondary btn-lg d-inline-block mr-3" href="/dashboard">My Dashboard</a>
         <a href="/logout" class="btn btn-secondary btn-lg d-inline-block mr-3">Logout</a>
     </div>
     </nav>
 
-    <div class="timer-ctr d-flex flex-column justify-content-center align-items-center">
+    <div class="p-2 d-flex flex-column justify-content-center align-items-center">
         <div class="timer-main d-flex flex-column align-items-center">
             <h1 id="countdown">00</h1>
             <h2 id="timer-status"></h2>

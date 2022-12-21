@@ -5,15 +5,16 @@
 }
 
 /* Timer Stylings */
-.timer-ctr {
-    width: 500px;
-}
+
 .timer-ctr > * {
     margin: 10px;
     padding: 10px;
 }
 #countdown {
     font-size: 6rem;
+}
+#victory {
+    width: 80%;
 }
 .play-btn {
     margin: 10px;
