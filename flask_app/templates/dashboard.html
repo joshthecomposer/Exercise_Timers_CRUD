@@ -79,11 +79,11 @@
                 <h1 class="text-white card-header bg-secondary">Your Timers</h1>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <div class="container message">
+                <ul class="flashes message">
                     {% for message in messages %}
-                        <p class="text-danger text-center">{{ message }}</p>
+                        <li class="text-danger text-center">{{ message }}</li>
                         {% endfor %}
-                    </div>
+                </ul>
                     {% endif %}
                 {% endwith %}
                 <button class="btn btn-dark btn-lg mt-3" type="button" onclick="revealCreate()">Add A New Timer</button>
