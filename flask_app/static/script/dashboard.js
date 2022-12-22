@@ -45,7 +45,10 @@ forms = document.querySelectorAll("[id^='edit-form-']")
                     return
                 }
             }
-
+            hide_state = document.getElementById(`state-stats-${verify['id']}`)
+            if (hide_state) {
+                $(hide_state).remove()
+            }
             let data = $(forms[i]).serialize()
             $.ajax({
                 method: 'POST',

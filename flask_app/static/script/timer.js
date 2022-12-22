@@ -1,4 +1,3 @@
-
 let id = document.querySelector('.hidden')
 id = Number(id.innerText)
 let activity
@@ -153,6 +152,18 @@ function counter() {
                 return false
             }
         })
+        $.ajax({
+            method: 'POST',
+            url: "/set_current_time",
+            data: {
+                'timer_id': id,
+                'currentTime' : currentTime
+            },
+            cache: false,
+            success: function (data) {
+                return false
+            }
+        })
 
         sets.innerText--
         clearInterval(interval)
@@ -167,6 +178,18 @@ function counter() {
         clearInterval(interval)
         is_playing = false;
         activity = 'exercise'
+        $.ajax({
+            method: 'POST',
+            url: "/set_current_time",
+            data: {
+                'timer_id': id,
+                'currentTime' : currentTime
+            },
+            cache: false,
+            success: function (data) {
+                return false
+            }
+        })
         return exerciseControl()
     }
     countdown.innerText--
@@ -199,7 +222,20 @@ function endExercise(a, b) {
             return false
         }
     })
-}
-
+    }
+    
+    
 })
+
+function resetTimer(id) {
+    $.ajax({
+        method: 'POST',
+        url: "/reset_timer",
+        data: {'timer_id':id},
+        cache: false,
+        success: function (data) {
+            location.reload()
+        }
+    })
+}
 

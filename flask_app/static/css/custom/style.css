@@ -25,6 +25,15 @@
     border-radius: 20px;
     border: 0px;
 }
+.res-btn {
+    margin: 10px;
+    background-color: darkred;
+    color: white;
+    width: 200px;
+    height: 40px;
+    border-radius: 20px;
+    border: 0px;
+}
 
 .timer-head {
     align-items: center;

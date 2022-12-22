@@ -94,13 +94,17 @@
                         <span>(Active)</span>
                         {%endif%}
                     </h4>
+                    {%if t.state.in_progress%}
+                    <div id="state-stats-{{t['id']}}">
+                        <p><strong>Current Timer Count: {{t.state.currentTime}}</strong></p>
+                        <p><strong>Current Activity: {{t.state.activity.upper()}}</strong></p>
+                        <p><strong> Sets Remaining: {{t['sets'] - t.state.sets_completed}}</strong></p>
+                    </div>
+                    {%endif%}
                     <p>Exercise (seconds): {{t['exercise_time']}}</p>
                     <p>Rest (seconds): {{t['rest_time']}}</p>
-                    {%if t.state.in_progress%}
-                    <p>Sets Remaining: {{t['sets'] - t.state.sets_completed}}</p>
-                    {%elif not t.state.in_progress%}
                     <p>Total Sets: {{t['sets']}}</p>
-                    {%endif%}
+
                     <div class="my-2">
                     <a class="btn btn-dark btn-sm" href="/view/timer/{{t['id']}}">Workout</a>
                     <button id="{{t['id']}}" name="{{t['name']}}" class="btn btn-dark btn-sm" onclick="revealEdit(this.id, this.name)">Edit</button>

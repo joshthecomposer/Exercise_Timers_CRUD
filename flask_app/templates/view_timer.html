@@ -15,7 +15,7 @@
 <body>
     <p class="hidden">{{one_timer.id}}</p>
     <nav class="p-2 mb-2 nav d-flex justify-content-end align-items-center" style="background-color:#333;">
-        <h2 class=" text-white">{{one_timer.name}} Timer</h2>
+        <h2 class=" text-white">{{one_timer.name}}</h2>
     <div class="mb-2">
         <a class="btn btn-secondary btn-lg d-inline-block mr-3" href="/dashboard">My Dashboard</a>
         <a href="/logout" class="btn btn-secondary btn-lg d-inline-block mr-3">Logout</a>
@@ -33,6 +33,9 @@
             <p>Rest: <span id="restTime">{{one_timer.rest_time}}</span></p>
             <p>Sets Remaining: <span id="sets">{{one_timer.sets}}</span></p>
             <button class="play-btn" id="play">Play</button>
+            <div>
+            <button class="res-btn" id="{{one_timer.id}}" onclick="resetTimer(this.id)">Reset</button>
+            </div>
         </div>
     </div>
 </body>
