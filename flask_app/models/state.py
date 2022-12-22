@@ -43,3 +43,8 @@ class State:
         }
         query = "UPDATE states SET in_progress  = %(in_progress)s, currentTime = %(currentTime)s, activity = %(activity)s, sets_completed = %(sets_completed)s WHERE states.timer_id = %(timer_id)s"
         return connectToMySQL(DB).query_db(query,data)
+    
+    @classmethod
+    def set_current_time(cls, data):
+        query = "UPDATE states SET currentTime = %(currentTime)s WHERE states.timer_id = %(timer_id)s"
+        return connectToMySQL(DB).query_db(query,data)

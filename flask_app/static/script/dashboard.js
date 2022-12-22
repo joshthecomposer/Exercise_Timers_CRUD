@@ -84,17 +84,9 @@ function destroyTimer(id) {
     })
 }
 
-
-
 let blurElement = document.getElementById('blur');
 let edit;
 let create = document.querySelector('#create');
-
-
-
-
-
-
 
 function revealEdit(id, name) {
     edit = document.getElementById(`${id} ${name}`);
@@ -169,3 +161,16 @@ setTimeout(function () {
     let e = document.querySelector(".message")
     $(e).fadeOut(500)
 }, 2000)
+
+function resetTimer(id) {
+    id = id.slice(6)
+    $.ajax({
+        method: 'POST',
+        url: "/reset_timer",
+        data: {'timer_id':id},
+        cache: false,
+        success: function (data) {
+            location.reload()
+        }
+    })
+}

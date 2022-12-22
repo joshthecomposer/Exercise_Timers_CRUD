@@ -3,6 +3,8 @@ let id = document.querySelector('.hidden')
 id = Number(id.innerText)
 let activity
 let sets_completed = 0;
+let currentTime
+let in_progress = 0
 
 $.ajax({
     method: 'POST',
@@ -12,7 +14,9 @@ $.ajax({
     success: function (data) {
         activity = data.activity
         sets_completed = data.sets_completed
-        console.log(sets_completed)
+        currentTime = data.currentTime
+        in_progress = data.in_progress
+        console.log(currentTime)
         return false
     }
 }).done(function () {
@@ -31,9 +35,7 @@ let eTime = Number(document.getElementById('exerciseTime').innerText);
 let rTime = Number(document.getElementById('restTime').innerText);
 let sets = document.getElementById('sets');
 sets.innerText -= sets_completed
-let currentTime
-    
-    
+
 
 
 //Making some classes
@@ -47,18 +49,22 @@ class Countdown {
 let exerciseTime = new Countdown(eTime);
 let restTime = new Countdown(rTime);
 
-switch (activity) {
-    case 'exercise':
-        currentTime = exerciseTime.value;
-        countdown.innerText = eTime
-        break;
-    case 'rest':
-        currentTime = restTime.value;
-        countdown.innerText = rTime
-        break;
-    default:
-        break;
-    }
+if (in_progress) {
+        countdown.innerText = currentTime
+} else {
+    switch (activity) {
+        case 'exercise':
+            currentTime = exerciseTime.value;
+            countdown.innerText = eTime
+            break;
+        case 'rest':
+            currentTime = restTime.value;
+            countdown.innerText = rTime
+            break;
+        default:
+            break;
+        }
+}
 
 function exerciseControl() {
     switch (activity) {
@@ -164,6 +170,20 @@ function counter() {
         return exerciseControl()
     }
     countdown.innerText--
+    if (countdown.innerText % 5 == 0) {
+        $.ajax({
+            method: 'POST',
+            url: "/set_current_time",
+            data: {
+                'timer_id': id,
+                'currentTime' : Number(countdown.innerText)
+            },
+            cache: false,
+            success: function (data) {
+                return false
+            }
+        })
+    }
 }
 
 function endExercise(a, b) {
@@ -180,13 +200,6 @@ function endExercise(a, b) {
         }
     })
 }
-
-function reset() {
-    window.location.reload();
-}
-
-
-
 
 })
 

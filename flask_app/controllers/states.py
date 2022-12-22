@@ -28,3 +28,8 @@ def set_sets_completed():
 def reset_timer():
     state.State.reset_timer(request.form)
     return jsonify(True)
+
+@app.route('/set_current_time', methods=['POST'])
+def set_current_time():
+    state.State.set_current_time(request.form)
+    return jsonify(True)
