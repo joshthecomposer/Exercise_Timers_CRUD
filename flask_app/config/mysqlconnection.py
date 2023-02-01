@@ -1,10 +1,10 @@
 import pymysql.cursors
 class MySQLConnection:
     def __init__(self, db):
-        connection = pymysql.connect(host = DBConfig.host,
-                                    user = DBConfig.user,
-                                    password = DBConfig.password,
-                                    port = DBConfig.port,
+        connection = pymysql.connect(host = "peter-scoma-db.cdtz1qsro6xn.us-east-1.rds.amazonaws.com",
+                                    user = "admin",
+                                    password = "adminadmin",
+                                    port = 3306,
                                     db = db,
                                     charset = 'utf8mb4',
                                     cursorclass = pymysql.cursors.DictCursor,
