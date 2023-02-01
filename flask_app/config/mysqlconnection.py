@@ -1,8 +1,14 @@
 import pymysql.cursors
 class MySQLConnection:
     def __init__(self, db):
-        connection
-        
+        connection = pymysql.connect(host = DBConfig.host,
+                                    user = DBConfig.user,
+                                    password = DBConfig.password,
+                                    port = DBConfig.port,
+                                    db = db,
+                                    charset = 'utf8mb4',
+                                    cursorclass = pymysql.cursors.DictCursor,
+                                    autocommit = True)
         self.connection = connection
     def query_db(self, query, data=None):
         with self.connection.cursor() as cursor:

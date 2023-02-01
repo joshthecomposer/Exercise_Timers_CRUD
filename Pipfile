@@ -19,6 +19,7 @@ markupsafe = "==2.1.1"
 pycparser = "==2.21"
 werkzeug = "==2.2.2"
 python-dotenv = "*"
+flask-dotenv = "*"
 
 [dev-packages]
 
