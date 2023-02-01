@@ -4,8 +4,8 @@ from os import environ
 class MySQLConnection:
     def __init__(self, db):
         connection = pymysql.connect(host = environ.get("MYSQL_HOST"),
-                                    user = "admin",
-                                    password = "adminadmin",
+                                    user = environ.get("MYSQL_USER"),
+                                    password = environ.get("MYSQL_PASSWORD"),
                                     port = 3306,
                                     db = db,
                                     charset = 'utf8mb4',
