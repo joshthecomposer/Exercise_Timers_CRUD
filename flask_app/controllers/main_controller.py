@@ -1,5 +1,5 @@
 from flask import render_template, redirect, session
-from flask_app import app
+from flask_app import application as app
 
 @app.route('/')
 def index():

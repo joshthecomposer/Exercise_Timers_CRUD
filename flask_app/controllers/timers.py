@@ -1,5 +1,5 @@
 from flask import render_template, redirect, request, jsonify, session
-from flask_app import app
+from flask_app import application as app
 from flask_app.models import timer
 
 @app.route('/view/timer/<int:id>')

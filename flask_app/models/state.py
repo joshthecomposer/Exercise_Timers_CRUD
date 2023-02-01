@@ -1,7 +1,7 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash,session
 
-DB='railway'
+DB='ET'
 
 class State:
     def __init__(self, data ):
