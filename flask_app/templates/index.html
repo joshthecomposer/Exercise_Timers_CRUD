@@ -16,8 +16,9 @@
     <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
         <h1 class="p-3 text-white">timer.io</h1>
     </nav>
-    <div class="flex-ctr d-flex">
-        <div id="login" class="form-card" style="display:none;">
+    <div class="flex-ctr d-flex flex-column">
+
+        <div id="login" class="form-card bg-secondary" style="display:none;">
             <h2 class="form-head">Login</h2>
             <div class="accent-ln"></div>
             <form action="/login" method="POST">
@@ -29,11 +30,11 @@
                     <label for="password">Password:</label>
                     <input class="form-control" type="password" name="password">
                 </div>
-                <input class="submit-btn btn btn-secondary btn-lg d-inline-block mr-3" type="submit" value="Login">
+                <input class="submit-btn btn btn-primary btn-lg d-inline-block mr-3" type="submit" value="Login">
             </form>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Sign Up</button> instead?</p>
         </div>
-        <div id="sign-up" class="form-card">
+        <div id="sign-up" class="form-card bg-secondary">
             <h2 class="form-head">Sign Up</h2>
             <div class="accent-ln"></div>
             {% with messages = get_flashed_messages() %}
@@ -63,10 +64,16 @@
                     <label for="confirmpassword">Confirm Password:</label>
                     <input class="form-control" type="password" name="confirmpassword">
                 </div>
-                    <input class="submit-btn btn btn-secondary btn-lg d-inline-block mr-3" type="submit" value="Sign Up">
+                    <input class="submit-btn btn btn-primary btn-lg d-inline-block mr-3" type="submit" value="Sign Up">
                 </form>
             </div>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Login</button> instead?</p>
+        </div>
+        <div class="form-card bg-secondary">
+            <p>This website allows you to create and save multiple exercise interval timers!</p>
+            <p>All your cardio or HIIT needs can be met. Need a timer for jump rope? Create a timer for jump rope! Wanna do some sprints? Switch to your sprints timer!</p>
+            <p>When you are exercising, your progress will be saved in the database, so if you switch devices or lose connection, you can pick up your workout where you left off.</p>
+            <p>Enjoy!</p>
         </div>
     </div>
 </body>
