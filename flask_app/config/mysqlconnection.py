@@ -1,7 +1,9 @@
 import pymysql.cursors
+from os import environ 
+
 class MySQLConnection:
     def __init__(self, db):
-        connection = pymysql.connect(host = "peter-scoma-db.cdtz1qsro6xn.us-east-1.rds.amazonaws.com",
+        connection = pymysql.connect(host = environ.get("MYSQL_HOST"),
                                     user = "admin",
                                     password = "adminadmin",
                                     port = 3306,
