@@ -1,6 +1,6 @@
 # Create and Save your Own Exercise Timers!
 
-**Live Link [Here.](http://exercisetimercrud-env.eba-3cmmwj2f.us-east-1.elasticbeanstalk.com/)**
+**Live Link [Here.](http://exercise-timers-crud-env.eba-umremzha.us-east-1.elasticbeanstalk.com/)**
 
 ### Features:
 * User AUTH
