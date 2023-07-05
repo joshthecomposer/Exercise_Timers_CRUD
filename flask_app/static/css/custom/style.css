@@ -6,10 +6,10 @@
 
 /* Timer Stylings */
 
-.timer-ctr > * {
+/* .timer-ctr > * {
     margin: 10px;
     padding: 10px;
-}
+} */
 #countdown {
     font-size: 6rem;
 }
@@ -50,14 +50,14 @@
 }
 
 /* Login/Registration Page Stylings */
-.flex-ctr {
+/* .flex-ctr {
     margin: 20px;
-}
+} */
 
 
 .form-card {
     /* background-color: rgb(95, 163, 205); */
-    border-radius: 30px;
+    border-radius: 5px;
     padding:20px;
     margin-top: 20px;
     width: 400px;

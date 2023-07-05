@@ -14,11 +14,10 @@
 </head>
 <body>
     <nav class="nav d-flex justify-content-end align-items-center" style="background-color:#333;">
-        <h1 class="p-3 text-white">timer.io</h1>
+        <h1 class="p-3 text-white">Exercise Timers</h1>
     </nav>
     <div class="flex-ctr d-flex flex-column">
-
-        <div id="login" class="form-card bg-white shadow" style="display:none;">
+        <div id="login" class="form-card bg-white shadow-sm" style="display:none;">
             <h2 class="form-head">Login</h2>
             <div class="accent-ln"></div>
             <form action="/login" method="POST">
@@ -34,7 +33,7 @@
             </form>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Sign Up</button> instead?</p>
         </div>
-        <div id="sign-up" class="form-card bg-white shadow">
+        <div id="sign-up" class="form-card bg-white shadow-sm">
             <h2 class="form-head">Sign Up</h2>
             <div class="accent-ln"></div>
             {% with messages = get_flashed_messages() %}
@@ -69,7 +68,7 @@
             </div>
             <p><button class='btn btn-sm btn-dark' type="button" onclick='indexSwitch()'>Login</button> instead?</p>
         </div>
-        <div class="form-card bg-white shadow">
+        <div class="form-card bg-white shadow-sm">
             <p>This website allows you to create and save multiple exercise interval timers!</p>
             <p>All your cardio or HIIT needs can be met. Need a timer for jump rope? Create a timer for jump rope! Wanna do some sprints? Switch to your sprints timer!</p>
             <p>When you are exercising, your progress will be saved in the database, so if you switch devices or lose connection, you can pick up your workout where you left off.</p>
