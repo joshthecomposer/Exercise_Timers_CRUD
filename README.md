@@ -2,6 +2,11 @@
 
 **Live Link [Here.](http://exercise-timers-crud-env.eba-umremzha.us-east-1.elasticbeanstalk.com/)**
 
+### Tech:
+* Python/Flask
+* MySQL (Aws RDS)
+* Jquery/AJAX for async updates on timer creation and deletion.
+
 ### Features:
 * User AUTH
 * User can create, update, delete multiple Exercise Timers.
